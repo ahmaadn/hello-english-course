@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg bg-light navbar-light py-1 py-lg-0 px-0 px-lg-5">
         <a href="{{ url('/') }}" class="navbar-brand font-weight-bold text-secondary" style="font-size: 40px">
             <i class="flaticon-043-teddy-bear"></i>
-            <span class="text-primary">Hallo English</span>
+            <span class="text-primary">Hello English</span>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
