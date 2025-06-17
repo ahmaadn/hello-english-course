@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-6 col-lg-3 text-center team mb-5">
                 <div class="position-relative overflow-hidden mb-4" style="border-radius: 100%">
-                    <img class="img-fluid w-100" src="{{ asset('img/team-1.jpg') }}" alt="Teacher Julia Smith" />
+                    <img class="img-fluid w-100" src="img/team-1.jpg" alt="" />
                     <div
                         class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute">
                         <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px"
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-6 col-lg-3 text-center team mb-5">
                 <div class="position-relative overflow-hidden mb-4" style="border-radius: 100%">
-                    <img class="img-fluid w-100" src="{{ asset('img/team-2.jpg') }}" alt="Teacher Jhon Doe" />
+                    <img class="img-fluid w-100" src="img/team-2.jpg" alt="" />
                     <div
                         class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute">
                         <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px"
@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-6 col-lg-3 text-center team mb-5">
                 <div class="position-relative overflow-hidden mb-4" style="border-radius: 100%">
-                    <img class="img-fluid w-100" src="{{ asset('img/team-3.jpg') }}" alt="Teacher Mollie Ross" />
+                    <img class="img-fluid w-100" src="img/team-3.jpg" alt="" />
                     <div
                         class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute">
                         <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px"
@@ -57,7 +57,7 @@
             </div>
             <div class="col-md-6 col-lg-3 text-center team mb-5">
                 <div class="position-relative overflow-hidden mb-4" style="border-radius: 100%">
-                    <img class="img-fluid w-100" src="{{ asset('img/team-4.jpg') }}" alt="Teacher Donald John" />
+                    <img class="img-fluid w-100" src="img/team-4.jpg" alt="" />
                     <div
                         class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute">
                         <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px"
