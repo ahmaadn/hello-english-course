@@ -13,8 +13,10 @@
                     class="nav-item nav-link {{ ($currentPage ?? '') == 'home' ? 'active' : '' }}">Home</a>
                 <a href="{{ url('/about') }}"
                     class="nav-item nav-link {{ ($currentPage ?? '') == 'about' ? 'active' : '' }}">About</a>
+                <a href="{{ url('/genres') }}"
+                    class="nav-item nav-link {{ ($currentPage ?? '') == 'genres' ? 'active' : '' }}">Genre</a>
                 <div class="nav-item dropdown mb-3 mb-lg-0">
-                    <a href="#"
+                    <a href="{{ url('/chapter') }}"
                         class="nav-link dropdown-toggle {{ in_array(($currentPage ?? ''), ['blog', 'blog-detail']) ? 'active' : '' }}"
                         data-toggle="dropdown">Chapter</a>
                     <div class="dropdown-menu rounded-0 px-2">
