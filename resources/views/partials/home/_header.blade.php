@@ -10,7 +10,7 @@
             <p class="text-white mb-4">
                 A fun and simple way for teens to learn Grade 10 English with easy lessons and interactive practice
             </p>
-            <a href="#" class="btn btn-secondary mt-1 py-3 px-5">Login</a>
+            <a href="{{ route('auth.login') }}" class="btn btn-secondary mt-1 py-3 px-5">Login</a>
         </div>
         <div class="col-lg-6 text-center text-lg-right">
             <img class="img-fluid my-5" src="{{ asset('img/home-header.png') }}" alt="Header Image" width="500" />

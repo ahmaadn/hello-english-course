@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('auth.')->group(function () {
     Route::get('/auth/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/auth/login', [AuthController::class, 'login'])->name('login.submit');
 
     // register
     Route::get('/auth/register', [RegisterController::class, 'index'])->name('register');
