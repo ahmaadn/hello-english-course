@@ -27,6 +27,8 @@
     @stack('prepend-scripts')
     @include('partials._scripts')
     @stack('scripts')
+
+    @include('partials._toastr')
 </body>
 
 </html>

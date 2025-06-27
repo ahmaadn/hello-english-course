@@ -24,3 +24,6 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="{{ asset('css/style.min.css') }}" rel="stylesheet" />
+
+<!-- toastr -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
