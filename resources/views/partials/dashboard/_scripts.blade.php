@@ -19,3 +19,6 @@
 <script src="{{ asset('dashboard/js/dashboard.js') }}"></script>
 <!-- <script src="{{ asset('skydash-v.01/js/Chart.roundedBarCharts.js') }}"></script> -->
 <!-- End custom js for this page-->
+
+<!-- TOASER -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

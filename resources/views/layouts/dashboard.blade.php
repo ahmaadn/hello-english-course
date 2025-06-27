@@ -24,6 +24,7 @@
         </div>
     </div>
     @include('partials.dashboard._scripts')
+    @include('partials._toastr')
     @stack('scripts')
 </body>
 
