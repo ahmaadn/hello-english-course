@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.home');
-});
+})->name('home');
 
 Route::get('/about', function () {
     return view('pages.about');
@@ -29,3 +29,7 @@ Route::get('/chapter/2', function () {
 Route::get('/chapter/3', function () {
     return view('pages.chapter.detail');
 });
+
+
+
+require __DIR__ . '/auth.php';
