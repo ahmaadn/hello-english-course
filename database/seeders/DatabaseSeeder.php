@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Genre;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +13,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $genreData = [
+            [
+                'name' => 'Narrative',
+                'description' => 'Text that tells about an event or incident.'
+            ],
+            [
+                'name' => 'Exposition',
+                'description' => 'Text that aims to explain information or knowledge.'
+            ],
+            [
+                'name' => 'Descriptive',
+                'description' => 'Text that describes an object, place, or event.'
+            ],
+            [
+                'name' => 'Procedural',
+                'description' => 'Text containing steps or procedures for doing something.'
+            ],
+            [
+                'name' => 'Persuasive',
+                'description' => 'Text that aims to persuade or convince the reader.'
+            ],
+        ];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        foreach ($genreData as $genre) {
+            Genre::create([
+                'name' => $genre['name'],
+                'slug' => strtolower(str_replace(' ', '-', $genre['name'])),
+                'description' => $genre['description']
+            ]);
+        }
+
     }
 }
