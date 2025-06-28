@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Genre;
-use Illuminate\Http\Request;
+use App\Models\Module;
+
 
 class HomeController extends Controller
 {
@@ -17,10 +17,10 @@ class HomeController extends Controller
         return view("pages.about");
     }
 
-    public function genres()
+    public function modules()
     {
-        $genres = Genre::all();
-        return view("pages.genres", compact('genres'));
+        $modules = Module::with(['user', 'materis'])->get();
+        return view("pages.module", compact('modules'));
     }
 
     public function chapter()

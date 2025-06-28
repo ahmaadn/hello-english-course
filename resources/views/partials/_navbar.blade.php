@@ -9,23 +9,12 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav font-weight-bold  py-0">
-                <a href="{{ url('/') }}"
+                <a href="{{ route('home') }}"
                     class="nav-item nav-link {{ ($currentPage ?? '') == 'home' ? 'active' : '' }}">Home</a>
-                <a href="{{ url('/about') }}"
+                <a href="{{ route('about') }}"
                     class="nav-item nav-link {{ ($currentPage ?? '') == 'about' ? 'active' : '' }}">About</a>
-                <a href="{{ url('/genres') }}"
-                    class="nav-item nav-link {{ ($currentPage ?? '') == 'genres' ? 'active' : '' }}">Genre</a>
-                <div class="nav-item dropdown mb-3 mb-lg-0">
-                    <a href="{{ url('/chapter') }}"
-                        class="nav-link dropdown-toggle {{ in_array(($currentPage ?? ''), ['blog', 'blog-detail']) ? 'active' : '' }}"
-                        data-toggle="dropdown">Chapter</a>
-                    <div class="dropdown-menu rounded-0 px-2">
-                        <a href="{{ url('/chapter/1') }}" class="dropdown-item">Chapter 1</a>
-                        <a href="{{ url('/chapter/2') }}" class="dropdown-item">Chapter 2</a>
-                        <a href="{{ url('/chapter/3') }}" class="dropdown-item">Chapter 3</a>
-                    </div>
-                </div>
-
+                <a href="{{ route('modules') }}"
+                    class="nav-item nav-link {{ ($currentPage ?? '') == 'genres' ? 'active' : '' }}">Modules</a>
             </div>
             <a href="#" class="btn btn-primary px-4">Quiz Now</a>
         </div>
