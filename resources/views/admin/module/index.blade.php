@@ -77,15 +77,13 @@
                                                     aria-haspopup="true" aria-expanded="false">
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item">Materi</a>
+                                                    <a class="dropdown-item" href="#">Materi</a>
                                                     <a class="dropdown-item"
                                                         href="{{ route('admin.module.edit', $module->id) }}">Update</a>
-                                                    <form action="{{ route('admin.module.destroy', $module->id) }}"
-                                                        method="POST" onsubmit="return confirm('Are you sure?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="dropdown-item text-danger" type="submit">Delete</button>
-                                                    </form>
+                                                    <button class="dropdown-item text-danger btn-delete-module" type="button"
+                                                        data-toggle="modal" data-target="#deleteModal"
+                                                        data-id="{{ $module->id }}"
+                                                        data-name="{{ $module->name }}">Delete</button>
                                                 </div>
                                             </div>
                                         </td>
@@ -98,8 +96,51 @@
                             </tbody>
                         </table>
                     </div>
+                    <!-- Modal Delete Global -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Apakah Anda yakin ingin menghapus modul <strong id="deleteModuleName">...</strong>?
+                                </div>
+                                <div class="modal-footer">
+                                    <form id="deleteModuleForm" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteModal = document.getElementById('deleteModal');
+            const deleteModuleName = document.getElementById('deleteModuleName');
+            const deleteModuleForm = document.getElementById('deleteModuleForm');
+            document.querySelectorAll('.btn-delete-module').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    deleteModuleName.textContent = name;
+                    deleteModuleForm.action = "{{ url('admin/module') }}/" + id;
+                });
+            });
+        });
+    </script>
+@endpush
