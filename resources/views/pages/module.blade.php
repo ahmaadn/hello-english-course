@@ -42,7 +42,8 @@
                                 <p>
                                     {{ \Illuminate\Support\Str::limit($module->description, 100) }}
                                 </p>
-                                <a href="" class="btn btn-primary px-4 mx-auto my-2">Enroll Module</a>
+                                <a href="{{ route('materi.intro', [$module]) }}"
+                                    class="btn btn-primary px-4 mx-auto my-2">Enroll Module</a>
                             </div>
                         </div>
                     </div>
