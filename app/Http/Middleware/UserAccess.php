@@ -19,7 +19,7 @@ class UserAccess
 
         // Cek apakah user sudah login
         if (!Auth::check()) {
-            return redirect('login');
+            return redirect('auth.login');
         }
 
         // Cek apakah user sudah login dan memiliki role yang sesuai

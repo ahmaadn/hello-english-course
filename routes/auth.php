@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\ModuleController as AdminModuleController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Middleware\UserAccess;
@@ -21,7 +22,9 @@ Route::name('auth.')->group(function () {
 // Admin Panel
 Route::middleware(['auth', UserAccess::class . ':admin'])
     ->prefix('admin')
-    ->name('admin')
+    ->name('admin.')
     ->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('module', AdminModuleController::class);
     });
