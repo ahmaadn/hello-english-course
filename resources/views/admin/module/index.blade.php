@@ -52,8 +52,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                @foreach ($modules as $module)
+                                @forelse ($modules as $module)
                                     <tr>
                                         <td>
                                             <a href="{{ route('admin.module.show', $module->id) }}"
@@ -91,7 +90,11 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted">Data module belum ada.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
