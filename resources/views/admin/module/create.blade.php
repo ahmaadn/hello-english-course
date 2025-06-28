@@ -7,8 +7,8 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Buat modul untuk ditambahkan</h4>
-                    <p class="card-description">Masukan informasi modul di bawah</p>
+                    <h4 class="card-title">Create Material to add</h4>
+                    <p class="card-description">Enter the module information below</p>
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul class="mb-0">
@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea class="form-control autoresizing" id="description" name="description" rows="4"
+                            <textarea class="form-control autoresizing" id="description" name="description" rows="15"
                                 required>{{ old('description') }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>

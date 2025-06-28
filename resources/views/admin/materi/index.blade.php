@@ -7,20 +7,52 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-6">
-                            <h4 class="card-title">Daftar Module</h4>
-                            <p class="card-description">
-                                Klik Judul materi untuk melihat materi
-                            </p>
+                            <h4 class="card-title">Data Materi untuk Modul : <a class="font-weight-bold"
+                                    href="{{ route('admin.module.index') }}">{{ $module->name }}</a></h4>
                         </div>
                         <div class="col-6 d-flex justify-content-end" style="width: fit-content; height: fit-content">
                             <a class="btn btn-success btn-sm d-inline-flex align-items-center justify-content-center"
-                                href="{{ route('admin.module.create') }}">
+                                href="{{ route('admin.module.materi.create', $module) }}">
                                 <i class="icon-sm ti-plus"></i>
                                 <p class="ml-2 mb-0">
-                                    Add Modul </p>
+                                    Add Materi </p>
                             </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8 col-12">
+                            <h4 class="font-weight-bold mb-3">Module Detail</h4>
+                            <div class="mb-3">
+                                <strong>Name:</strong> {{ $module->name }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Slug:</strong> {{ $module->slug }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Description:</strong> {{ $module->description }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Estimated:</strong> @estimasi($module->estimated)
+                            </div>
+                            <div class="mb-3">
+                                <strong>Create by:</strong> {{ $module->user->name ?? '-' }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-12">
+                            <div class="mb-3">
+                                <strong>Image </strong>
+                            </div>
+                            <a class="mb-3 text-muted" href="{{ asset('storage/' . $module->image_url) }}"
+                                style="font-size: 14px; ">
+
+                                Download here
+                            </a>
+                            <div class="mb-3">
+                                <img src="{{ asset('storage/' . $module->image_url) }}" alt="Current Image"
+                                    style="max-width: 100%; max-height: 250px; border-radius: 8px;">
+                            </div>
                         </div>
                     </div>
                     @if (session('success'))
@@ -45,51 +77,47 @@
                             <thead>
                                 <tr>
                                     <th>Title</th>
-                                    <th>Create By</th>
-                                    <th>Material</th>
+                                    <th>Genre</th>
+                                    <th>Order</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($modules as $module)
+                                @forelse ($materis as $item)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('admin.module.materi.index', $module) }}"
-                                                class="text-decoration-none">
-                                                <h4 class="mb-0">{{ $module->name }}</h4>
+                                            <a class="text-decoration-none">
+                                                <h4 class="mb-0">{{ $item->title }}</h4>
                                                 <p class="text-decoration-none text-muted mb-0 text-subtitle">
-                                                    {{ \Illuminate\Support\Str::limit($module->description ?? '', 50, '...') }}
+                                                    {{ \Illuminate\Support\Str::limit($item->content ?? '', 50, '...') }}
                                                 </p>
                                             </a>
                                         </td>
-                                        <td>{{ $module->user->name ?? '-' }}</td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="ti-book"></i>
-                                                <p class="ml-2 mb-0">{{ $module->materis->count() ?? '0' }}</p>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <i class="ti-time"></i>
-                                                <p class="ml-2 mb-0">
-                                                    @estimasi($module->estimated)
-                                                </p>
+                                            <div class="badge badge-danger">
+                                                {{ $item->genre->name ?? '-' }}
                                             </div>
                                         </td>
-                                        <td>{{ $module->created_at->format('d M Y') }}</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <i class="ti-stats-up"></i>
+                                                <p class="ml-2 mb-0">{{ $item->order ?? '-' }}</p>
+                                            </div>
+                                        </td>
+                                        <td>{{ $item->created_at->format('d M Y') }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button class="btn dropdown-toggle btn-sm" type="button" data-toggle="dropdown"
                                                     aria-haspopup="true" aria-expanded="false">
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#">Materi</a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('admin.module.edit', $module) }}">Update</a>
+                                                        href="{{ route('admin.module.materi.edit', [$module, $item]) }}">Update</a>
                                                     <button class="dropdown-item text-danger btn-delete-module" type="button"
                                                         data-toggle="modal" data-target="#deleteModal"
-                                                        data-id="{{ $module->slug }}"
-                                                        data-name="{{ $module->name }}">Delete</button>
+                                                        data-id="{{ $item->slug }}"
+                                                        data-name="{{ $item->title }}">Delete</button>
                                                 </div>
                                             </div>
                                         </td>
@@ -144,7 +172,7 @@
                     const id = this.getAttribute('data-id');
                     const name = this.getAttribute('data-name');
                     deleteModuleName.textContent = name;
-                    deleteModuleForm.action = "{{ url('admin/module') }}/" + id;
+                    deleteModuleForm.action = "{{ url('admin/module', ['module' => $module->slug]) }}/materi/" + id;
                 });
             });
         });

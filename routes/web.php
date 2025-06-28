@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ModuleController;
+
 
 Route::get('/', function () {
     return view('pages.home');
@@ -30,7 +30,5 @@ Route::get('/chapter/2', function () {
 Route::get('/chapter/3', function () {
     return view('pages.chapter.detail');
 });
-
-
 
 require __DIR__ . '/auth.php';

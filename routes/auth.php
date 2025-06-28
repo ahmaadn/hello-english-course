@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ModuleController as AdminModuleController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\MateriController as AdminMateriController;
 use App\Http\Middleware\UserAccess;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,6 @@ Route::middleware(['auth', UserAccess::class . ':admin'])
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('module', AdminModuleController::class);
+
+        Route::resource('module.materi', AdminMateriController::class);
     });

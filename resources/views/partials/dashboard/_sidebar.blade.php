@@ -14,6 +14,13 @@
                 <span class="menu-title">Module</span>
             </a>
         </li>
+        {{-- Materi --}}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.module.index') }}">
+                <i class="ti-bookmark-alt menu-icon"></i>
+                <span class="menu-title">Materi</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>

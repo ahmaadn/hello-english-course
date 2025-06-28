@@ -5,7 +5,6 @@
 @section('content')
     <h4>Edit Module</h4>
     <div class="row">
-
         <div class="col-md-8">
             <form action="{{ route('admin.module.update', $module) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -16,7 +15,7 @@
                 </div>
                 <div class="mb-3">
                     <label>Description</label>
-                    <textarea name="description" class="form-control" id="autoresizing" rows="4"
+                    <textarea name="description" class="form-control" id="autoresizing" rows="15"
                         required>{{ old('description', $module->description) }}</textarea>
                 </div>
                 <div class="mb-3">

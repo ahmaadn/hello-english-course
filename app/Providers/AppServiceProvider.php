@@ -29,5 +29,23 @@ class AppServiceProvider extends ServiceProvider
             return !auth()->check();
         });
 
+        Blade::directive('estimasi', function ($minutes) {
+            return "<?php
+        \$hours = floor($minutes / 60);
+        \$mins = $minutes % 60;
+        \$text = '';
+        if (\$hours > 0) {
+            \$text .= \$hours . ' hours';
+        }
+        if (\$mins > 0) {
+            \$text .= (\$hours > 0 ? ' ' : '') . \$mins . ' minutes';
+        }
+        if (\$text === '') {
+            \$text = 'Less than 1 minute';
+        }
+        echo \$text;
+        ?>";
+        });
+
     }
 }
