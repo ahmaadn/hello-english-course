@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -44,5 +45,20 @@ class User extends Authenticatable
         return [
             'password' => 'hashed',
         ];
+    }
+
+    public function progressMateris()
+    {
+        return $this->hasMany(ProgressMateris::class);
+    }
+
+    public function progressModules()
+    {
+        return $this->hasMany(ProgressModules::class);
+    }
+
+    public function modules()
+    {
+        return $this->hasMany(Module::class);
     }
 }

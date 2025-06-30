@@ -30,4 +30,8 @@ class Materi extends Model
     {
         return 'slug';
     }
+    public function progressMateris()
+    {
+        return $this->hasMany(ProgressMateris::class);
+    }
 }

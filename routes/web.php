@@ -24,6 +24,9 @@ Route::middleware(['auth'])
     ->name('materi.')
     ->group(function () {
         Route::get('/{module}/intro', [MateriController::class, 'index'])->name('intro');
+        Route::get('/{module}/start', [MateriController::class, 'start'])->name('start');
+
+        Route::get('/{module}/{materi}', [MateriController::class, 'showMateri'])->name('show');
     });
 
 

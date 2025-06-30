@@ -22,7 +22,8 @@
                 @foreach ($modules as $module)
                     <div class="col-lg-4 mb-4">
                         <div class="card border-0 shadow-sm mb-2">
-                            <img class="card-img-top mb-2" src="{{ asset('storage/' . $module->image_url) }}" alt="" />
+                            <img class="card-img-top mb-2" src="{{ asset('storage/' . $module->image_url) }}" alt="{{ $module->name }}"
+                                 />
                             <div class="card-body bg-light text-center p-4">
                                 <h4 class="">{{ $module->name }}</h4>
                                 <div class="d-flex justify-content-center mb-3">
