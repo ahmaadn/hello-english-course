@@ -12,28 +12,13 @@ class MateriController extends Controller
     public function index(Module $module)
     {
 
-        $userId = auth()->user()->id;
-        // Temukan module, dan muat relasi materi, DAN di dalam materi muat relasi progressMateri
-
-        $module = Module::with([
-            // Gunakan notasi titik untuk relasi bertingkat (nested relation)
-            'materis.progressMateris' => function ($query) use ($userId) {
-                // Constraint ini berlaku untuk relasi 'progressMateri'
-                $query->where('user_id', $userId);
-            }
-        ])->findOrFail($module->id);
-
-        $module->materis->each(function ($materi) {
-            // Jika collection progressMateri tidak kosong, ambil item pertama.
-            // Jika kosong, first() akan mengembalikan null.
-            $materi->progress = $materi->progressMateris->first();
-            unset($materi->progressMateris); // Bersihkan agar output rapi
-        });
+        $module = $this->__getModuleWithProgressMateri(auth()->user(), $module);
         return view("pages.materi.intro", compact("module"));
     }
 
     public function showMateri(Module $module, Materi $materi)
     {
+        $module = $this->__getModuleWithProgressMateri(auth()->user(), $module);
         return view("pages.materi.show", compact("module", "materi"));
     }
 
@@ -57,6 +42,11 @@ class MateriController extends Controller
 
         $this->__createProggresMateri($user, $materi);
         return redirect()->route('materi.show', [$module, $materi]);
+    }
+
+    public function next(Request $request, Module $module, Materi $materi)
+    {
+
     }
 
     private function __createProggresModule(User $user, Module $module)
@@ -100,5 +90,26 @@ class MateriController extends Controller
         ]);
 
         return $progressMateri;
+    }
+
+    private function __getModuleWithProgressMateri(User $user, Module $module)
+    {
+        $userId = $user->id;
+        $module = Module::with([
+            // Gunakan notasi titik untuk relasi bertingkat (nested relation)
+            'materis.progressMateris' => function ($query) use ($userId) {
+                // Constraint ini berlaku untuk relasi 'progressMateri'
+                $query->where('user_id', $userId);
+            }
+        ])->findOrFail($module->id);
+
+        $module->materis->each(function ($materi) {
+            // Jika collection progressMateri tidak kosong, ambil item pertama.
+            // Jika kosong, first() akan mengembalikan null.
+            $materi->progress = $materi->progressMateris->first();
+            unset($materi->progressMateris); // Bersihkan agar output rapi
+        });
+
+        return $module;
     }
 }
