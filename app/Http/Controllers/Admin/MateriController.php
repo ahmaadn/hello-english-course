@@ -16,9 +16,11 @@ class MateriController extends Controller
     public function index(Module $module)
     {
         $materis = Materi::with(['genre', 'module'])
+            ->where('module_id', $module->id)
             ->orderBy('order')
             ->orderByDesc('created_at')
             ->get();
+
         return view('admin.materi.index', compact('materis', 'module'));
     }
 
