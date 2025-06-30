@@ -13,7 +13,9 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <h3 class="brand-logo">
-                                <a href="{{ route('home') }}">Hello English</a>
+                                <a href="{{ route('home') }}">
+                                    <img src="{{ asset('img/logo.png') }}" width="220" alt="logo" />
+                                </a>
                             </h3>
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
