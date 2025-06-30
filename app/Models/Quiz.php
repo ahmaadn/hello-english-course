@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Quiz extends Model
 {
     protected $fillable = [
-        'module_id',
+        'materi_id',
         'tipe',
         'title',
         'nilai_minimal'
     ];
 
-    public function module()
+    public function materi()
     {
-        return $this->belongsTo(Module::class);
+        return $this->belongsTo(Materi::class);
     }
 
     public function pertanyaans()

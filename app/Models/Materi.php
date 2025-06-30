@@ -34,4 +34,9 @@ class Materi extends Model
     {
         return $this->hasMany(ProgressMateris::class);
     }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
 }

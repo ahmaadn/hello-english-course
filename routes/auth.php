@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ModuleController as AdminModuleController;
+use App\Http\Controllers\Admin\PertanyaanController as AdminPertanyaanController;
+use App\Http\Controllers\Admin\QuizController as AdminQuizController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\MateriController as AdminMateriController;
@@ -30,4 +32,10 @@ Route::middleware(['auth', UserAccess::class . ':admin'])
         Route::resource('module', AdminModuleController::class);
 
         Route::resource('module.materi', AdminMateriController::class);
+
+        Route::resource('quiz', AdminQuizController::class);
+
+        Route::post('/{quiz}/soal', [AdminPertanyaanController::class, 'store'])->name('pertanyaan.store');
+
+        Route::delete('/{quiz}/soal', [AdminPertanyaanController::class, 'destroy'])->name('pertanyaan.destroy');
     });

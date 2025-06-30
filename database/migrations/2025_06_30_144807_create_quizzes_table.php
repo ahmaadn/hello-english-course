@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("module_id")->constrained()->onDelete("cascade");
+            $table->foreignId("materi_id")->constrained()->onDelete("cascade");
             $table->enum('tipe', ['essay', 'pilihan_ganda', 'drop_drag']);
             $table->string('title');
-            $table->decimal('nilai_minimal', )->default(70);
+            $table->integer('nilai_minimal', )->default(70);
             $table->timestamps();
         });
     }

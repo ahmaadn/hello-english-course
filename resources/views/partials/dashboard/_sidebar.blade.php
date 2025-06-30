@@ -14,11 +14,18 @@
                 <span class="menu-title">Module</span>
             </a>
         </li>
-        {{-- Materi --}}
+        {{-- Materi
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.module.index') }}">
                 <i class="ti-book menu-icon"></i>
                 <span class="menu-title">Taks</span>
+            </a>
+        </li> --}}
+        {{-- Quiz --}}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.quiz.index') }}">
+                <i class="ti-book menu-icon"></i>
+                <span class="menu-title">Quiz</span>
             </a>
         </li>
         <li class="nav-item">

@@ -1,61 +1,26 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Dashboard | Materi')
+@section('title', 'Dashboard | Quiz')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col-6">
-                            <h4 class="card-title">Data Materi untuk Modul : <a class="font-weight-bold"
-                                    href="{{ route('admin.module.index') }}">{{ $module->name }}</a></h4>
+                            <h4 class="card-title">Daftar Quiz</h4>
+                            <p class="card-description">
+                                Klik QUiz materi untuk melihat detail
+                            </p>
                         </div>
                         <div class="col-6 d-flex justify-content-end" style="width: fit-content; height: fit-content">
-                            <a class="btn btn-success btn-sm d-inline-flex align-items-center justify-content-center"
-                                href="{{ route('admin.module.materi.create', $module) }}">
+                            <a href="{{ route('admin.quiz.create') }}"
+                                class="btn btn-success btn-sm d-inline-flex align-items-center justify-content-center">
                                 <i class="icon-sm ti-plus"></i>
                                 <p class="ml-2 mb-0">
-                                    Add Materi </p>
+                                    Add Quiz </p>
                             </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8 col-lg-8 col-12">
-                            <h4 class="font-weight-bold mb-3">Module Detail</h4>
-                            <div class="mb-3">
-                                <strong>Name:</strong> {{ $module->name }}
-                            </div>
-                            <div class="mb-3">
-                                <strong>Slug:</strong> {{ $module->slug }}
-                            </div>
-                            <div class="mb-3">
-                                <strong>Description:</strong> {{ $module->description }}
-                            </div>
-                            <div class="mb-3">
-                                <strong>Estimated:</strong> @estimasi($module->estimated)
-                            </div>
-                            <div class="mb-3">
-                                <strong>Order:</strong> {{$module->order}}
-                            </div>
-                            <div class="mb-3">
-                                <strong>Create by:</strong> {{ $module->user->name ?? '-' }}
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-12">
-                            <div class="mb-3">
-                                <strong>Image </strong>
-                            </div>
-                            <a class="mb-3 text-muted" href="{{ asset('storage/' . $module->image_url) }}"
-                                style="font-size: 14px; ">
-
-                                Download here
-                            </a>
-                            <div class="mb-3">
-                                <img src="{{ asset('storage/' . $module->image_url) }}" alt="Current Image"
-                                    style="max-width: 100%; max-height: 250px; border-radius: 8px;">
-                            </div>
                         </div>
                     </div>
                     @if (session('success'))
@@ -80,54 +45,38 @@
                             <thead>
                                 <tr>
                                     <th>Title</th>
-                                    <th>Genre</th>
-                                    <th>Order</th>
-                                    <th>Task</th>
-                                    <th>Date</th>
+                                    <th>Material</th>
+                                    <th>Type</th>
+                                    <th>Minimum Value</th>
+                                    <th>Questions</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($materis as $item)
+                                @forelse ($quizzes as $item)
                                     <tr>
                                         <td>
-                                            <a class="text-decoration-none">
-                                                <h4 class="mb-0">{{ $item->title }}</h4>
-                                                <p class="text-decoration-none text-muted mb-0 text-subtitle">
-                                                    {{ \Illuminate\Support\Str::limit($item->content ?? '', 50, '...') }}
-                                                </p>
+                                            <a class="text-decoration-none" href="{{ route('admin.quiz.show', $item) }}">
+                                                <h4 class="mb-0">{{ \Illuminate\Support\Str::limit($item->title, 30) }}</h4>
                                             </a>
                                         </td>
                                         <td>
-                                            <div class="badge badge-danger">
-                                                {{ $item->genre->name ?? '-' }}
-                                            </div>
+                                            {{ $item->materi->title }}
                                         </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="ti-stats-up"></i>
-                                                <p class="ml-2 mb-0">{{ $item->order ?? '-' }}</p>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a class="d-flex align-items-center" @if($item->quizzes->first())
-                                            href="{{ route('admin.quiz.show', $item->quizzes->first()->id) }}" @endif>
-                                                <p class="ml-2 mb-0">{{ $item->quizzes->first()->tipe ?? '-' }}</p>
-                                            </a>
-                                        </td>
-                                        <td>{{ $item->created_at->format('d M Y') }}</td>
+                                        <td>{{ $item->tipe ?? '-' }}</td>
+                                        <td>{{ $item->nilai_minimal ?? '-' }}</td>
+                                        <td>{{ $item->pertanyaans->count() ?? '-' }}</td>
                                         <td>
                                             <div class="dropdown">
-                                                <button class="btn dropdown-toggle btn-sm" type="button" data-toggle="dropdown"
+                                                <button class="btn dropdown-toggle " type="button" data-toggle="dropdown"
                                                     aria-haspopup="true" aria-expanded="false">
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('admin.module.materi.edit', [$module, $item]) }}">Update</a>
+                                                    <a href="{{ route('admin.quiz.edit', $item) }}"
+                                                        class="dropdown-item">Update</a>
                                                     <button class="dropdown-item text-danger btn-delete-module" type="button"
-                                                        data-toggle="modal" data-target="#deleteModal"
-                                                        data-id="{{ $item->slug }}"
-                                                        data-name="{{ $item->title }}">Delete</button>
+                                                        data-toggle="modal" data-target="#deleteModal" data-id="{{ $item->id }}"
+                                                        data-name="{{ $item->name }}">Delete</button>
                                                 </div>
                                             </div>
                                         </td>
@@ -182,7 +131,7 @@
                     const id = this.getAttribute('data-id');
                     const name = this.getAttribute('data-name');
                     deleteModuleName.textContent = name;
-                    deleteModuleForm.action = "{{ url('admin/module', ['module' => $module->slug]) }}/materi/" + id;
+                    deleteModuleForm.action = "{{ url('admin/quiz') }}/" + id;
                 });
             });
         });
