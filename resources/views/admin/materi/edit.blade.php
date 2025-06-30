@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Edit Module')
+@section('title', 'Dashboard | Edit Materi')
 
 @section('content')
     <h4>Edit Module</h4>

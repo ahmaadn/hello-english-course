@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard | Materi')
 
 @section('content')
     <div class="row">
@@ -35,6 +35,9 @@
                             </div>
                             <div class="mb-3">
                                 <strong>Estimated:</strong> @estimasi($module->estimated)
+                            </div>
+                            <div class="mb-3">
+                                <strong>Order:</strong> {{$module->order}}
                             </div>
                             <div class="mb-3">
                                 <strong>Create by:</strong> {{ $module->user->name ?? '-' }}
