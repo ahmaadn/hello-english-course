@@ -17,8 +17,8 @@
         {{-- Materi --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.module.index') }}">
-                <i class="ti-bookmark-alt menu-icon"></i>
-                <span class="menu-title">Materi</span>
+                <i class="ti-book menu-icon"></i>
+                <span class="menu-title">Taks</span>
             </a>
         </li>
         <li class="nav-item">
