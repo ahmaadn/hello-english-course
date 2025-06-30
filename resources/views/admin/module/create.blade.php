@@ -26,6 +26,11 @@
                             <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
                                 required>
                         </div>
+                        <div class="mb-3">
+                            <label>Order</label>
+                            <input type="number" name="order" class="form-control"
+                                value="{{ old('urutan', $moduleCount + 1) }}" required>
+                        </div>
                         <div class="form-group">
                             <label for="estimated">Estimated Study (Minutes)</label>
                             <input type="number" class="form-control" id="estimated" name="estimated"

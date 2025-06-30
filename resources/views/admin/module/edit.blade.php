@@ -19,6 +19,11 @@
                         required>{{ old('description', $module->description) }}</textarea>
                 </div>
                 <div class="mb-3">
+                    <label>Order</label>
+                    <input type="number" name="order" class="form-control" value="{{ old('order', $module->order) }}"
+                        required>
+                </div>
+                <div class="mb-3">
                     <label>Image</label>
                     <input type="file" name="image" class="form-control">
                     <small class="text-muted">Leave it blank if you don't want to change the image..</small>

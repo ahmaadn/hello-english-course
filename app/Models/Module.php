@@ -16,6 +16,7 @@ class Module extends Model
         'image_url',
         'estimated',
         'user_id',
+        'order'
     ];
 
     public function user()

@@ -15,7 +15,10 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        $modules = Module::with(['user'])->get();
+        $modules = Module::with(['user'])
+            ->orderBy('order')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('admin.module.index', compact('modules'));
     }
 
@@ -24,7 +27,8 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('admin.module.create');
+        $moduleCount = Module::count();
+        return view('admin.module.create', compact('moduleCount'));
     }
 
     /**
@@ -35,6 +39,7 @@ class ModuleController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'order' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'estimated' => 'required|integer',
         ]);
@@ -75,6 +80,7 @@ class ModuleController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'order' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'estimated' => 'required|integer',
         ]);

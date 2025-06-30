@@ -19,7 +19,10 @@ class HomeController extends Controller
 
     public function modules()
     {
-        $modules = Module::with(['user', 'materis'])->get();
+        $modules = Module::with(['user', 'materis'])
+            ->orderBy('order')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view("pages.module", compact('modules'));
     }
 

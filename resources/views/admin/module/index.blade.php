@@ -44,6 +44,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>Order</th>
                                     <th>Title</th>
                                     <th>Create By</th>
                                     <th>Material</th>
@@ -54,6 +55,7 @@
                             <tbody>
                                 @forelse ($modules as $module)
                                     <tr>
+                                        <td>{{ $module->order }}</td>
                                         <td>
                                             <a href="{{ route('admin.module.materi.index', $module) }}"
                                                 class="text-decoration-none">

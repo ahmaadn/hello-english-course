@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->text('description');
             $table->string('image_url')->nullable();
             $table->integer('estimated');
+            $table->integer('order')->nullable()->default(0);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
