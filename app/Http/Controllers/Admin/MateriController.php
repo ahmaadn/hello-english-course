@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Materi;
 use App\Models\Module;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 
 class MateriController extends Controller
@@ -52,8 +53,7 @@ class MateriController extends Controller
         $validated['module_id'] = $module->id;
 
         if ($request->hasFile('illustrations')) {
-            $imagePath = $request->file('illustrations')->store('materi', 'public');
-            $validated['illustrations_url'] = $imagePath;
+            $validated['illustrations_url'] = $this->__uploadService($request);
         }
         Materi::create($validated);
         return redirect()->route('admin.module.materi.index', $module)->with('success', 'Materi created successfully.');
@@ -82,8 +82,7 @@ class MateriController extends Controller
             'illustrations' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         if ($request->hasFile('illustrations')) {
-            $imagePath = $request->file('illustrations')->store('materi', 'public');
-            $validated['illustrations_url'] = $imagePath;
+            $validated['illustrations_url'] = $this->__uploadService($request);
         }
         $materi->update($validated);
         return redirect()->route('admin.module.materi.index', $module)->with('success', 'Materi updated successfully.');
@@ -96,5 +95,16 @@ class MateriController extends Controller
     {
         $materi->delete();
         return redirect()->route('admin.module.materi.index', $module)->with('success', 'Materi deleted successfully.');
+    }
+
+    private function __uploadService($request)
+    {
+        if (config('cloudinary.cloud_url')) {
+            $imagePath = Cloudinary::uploadApi()->upload($request->file('illustrations')->getRealPath())['secure_url'];
+        } else {
+            $imagePath = $request->file('illustrations')->store('materi_illustrations', 'public');
+            $imagePath = asset('storage/' . $imagePath);
+        }
+        return $imagePath;
     }
 }

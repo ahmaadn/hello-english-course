@@ -47,14 +47,28 @@
                             <div class="mb-3">
                                 <strong>Image </strong>
                             </div>
-                            <a class="mb-3 text-muted" href="{{ asset('storage/' . $module->image_url) }}"
-                                style="font-size: 14px; ">
+                            @if(Str::startsWith($module->image_url, ['http://', 'https://']))
 
-                                Download here
-                            </a>
+                                <a class="mb-3 text-muted" href="{{ $module->image_url }}" style="font-size: 14px; ">
+
+                                    Download here
+                                </a>
+                            @else
+                                <a class="mb-3 text-muted" href="{{ asset('storage/' . $module->image_url) }}"
+                                    style="font-size: 14px; ">
+
+                                    Download here
+                                </a>
+
+                            @endif
                             <div class="mb-3">
-                                <img src="{{ asset('storage/' . $module->image_url) }}" alt="Current Image"
-                                    style="max-width: 100%; max-height: 250px; border-radius: 8px;">
+                                @if(Str::startsWith($module->image_url, ['http://', 'https://']))
+                                    <img src="{{ $module->image_url }}" alt="Current Image"
+                                        style="max-width: 100%; max-height: 250px; border-radius: 8px;">
+                                @else
+                                    <img src="{{ asset('storage/' . $module->image_url) }}" alt="Current Image"
+                                        style="max-width: 100%; max-height: 250px; border-radius: 8px;">
+                                @endif
                             </div>
                         </div>
                     </div>

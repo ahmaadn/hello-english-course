@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Module;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -48,8 +49,7 @@ class ModuleController extends Controller
         $validated['slug'] = $this->createSlug($validated['name']);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('modules', 'public');
-            $validated['image_url'] = $imagePath;
+            $validated['image_url'] = $this->__uploadService($request);
         }
         Module::create($validated);
         return redirect()->route('admin.module.index')->with('success', 'Module created successfully.');
@@ -86,8 +86,7 @@ class ModuleController extends Controller
         ]);
         // Update image jika ada file baru
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('modules', 'public');
-            $validated['image_url'] = $imagePath;
+            $validated['image_url'] = $this->__uploadService($request);
         }
         $module->update($validated);
         return redirect()->route('admin.module.index')->with('success', 'Module updated successfully.');
@@ -108,5 +107,16 @@ class ModuleController extends Controller
         $namePart = substr($name, 0, 10);
         $slug = Str::slug($prefix . '-' . $namePart . '-' . time());
         return $slug;
+    }
+
+    private function __uploadService($request)
+    {
+        if (config('cloudinary.cloud_url')) {
+            $imagePath = Cloudinary::uploadApi()->upload($request->file('image')->getRealPath())['secure_url'];
+        } else {
+            $imagePath = $request->file('illustrations')->store('materi_illustrations', 'public');
+            $imagePath = asset('storage/' . $imagePath);
+        }
+        return $imagePath;
     }
 }

@@ -42,10 +42,13 @@
                 <strong>Thumbnail Image </strong>
             </div>
             @if($module->image_url)
-                <div class="mb-3">
+                @if(Str::startsWith($module->image_url, ['http://', 'https://']))
+                    <img src="{{ $module->image_url }}" alt="Current Image"
+                        style="max-width: 100%; max-height: 250px; border-radius: 8px;">
+                @else
                     <img src="{{ asset('storage/' . $module->image_url) }}" alt="Current Image"
                         style="max-width: 100%; max-height: 250px; border-radius: 8px;">
-                </div>
+                @endif
             @else
                 <div class="mb-3 text-muted">No image available</div>
             @endif

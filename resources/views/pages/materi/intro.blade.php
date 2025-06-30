@@ -24,6 +24,14 @@
                     </div>
                 </div>
                 <div class="mb-5">
+                    @if(Str::startsWith($module->image_url, ['http://', 'https://']))
+                        <img class="img-fluid rounded w-100 mb-4" src="{{ $module->image_url }}" alt="Image" />
+                    @else
+
+
+                        <img class="img-fluid rounded w-100 mb-4" src="{{ asset('storage/' . $module->image_url) }}"
+                            alt="Image" />
+                    @endif
                     <img class="img-fluid rounded w-100 mb-4" src="{{ asset('storage/' . $module->image_url) }}"
                         alt="Image" />
                     <p>

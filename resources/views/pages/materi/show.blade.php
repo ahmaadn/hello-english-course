@@ -6,7 +6,7 @@
 
 
 @section('content')
-    @include('partials._banner_heading', ['titleBanner' => 'JUDUL MATERI'])
+    @include('partials._banner_heading', ['titleBanner' => $materi->title])
     <div class="container py-5">
         <div class="row pt-5">
             <div class="col-lg-8">

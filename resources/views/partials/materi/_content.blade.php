@@ -11,7 +11,12 @@
     </div>
 </div>
 <div class="mb-5">
-    <img class="img-fluid rounded w-100 mb-4" src="{{  asset('storage/' . $materi->image_url) }}" alt="Image" />
+    @if(Str::startsWith($module->image_url, ['http://', 'https://']))
+        <img class="img-fluid rounded w-100 mb-4" src="{{  $module->image_url }}" alt="Image" />
+    @else
+        <img class="img-fluid rounded w-100 mb-4" src="{{  asset('storage/' . $materi->image_url) }}" alt="Image" />
+    @endif
+
     <p>
         {{ $materi->content }}
     </p>
