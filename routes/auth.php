@@ -19,7 +19,11 @@ Route::name('auth.')->group(function () {
     // register
     Route::get('/auth/register', [RegisterController::class, 'index'])->name('register');
     Route::post('/auth/register', [RegisterController::class, 'register'])->name('register.submit');
+
+    // Logout
+    Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
 
 
 // Admin Panel
@@ -38,4 +42,21 @@ Route::middleware(['auth', UserAccess::class . ':admin'])
         Route::post('/{quiz}/soal', [AdminPertanyaanController::class, 'store'])->name('pertanyaan.store');
 
         Route::delete('/{quiz}/soal', [AdminPertanyaanController::class, 'destroy'])->name('pertanyaan.destroy');
+    });
+
+
+// Student Panel
+Route::middleware(['auth', UserAccess::class . ':student'])
+    ->prefix('student')
+    ->name('user.')
+    ->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    });
+
+// Teacher Panel
+Route::middleware(['auth', UserAccess::class . ':teacher'])
+    ->prefix('teacher')
+    ->name('user.')
+    ->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     });

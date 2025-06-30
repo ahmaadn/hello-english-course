@@ -34,4 +34,10 @@ class AuthController extends Controller
         ])->withInput();
     }
 
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        return redirect()->route('home')->with('success', 'Logout successful!');
+    }
+
 }
