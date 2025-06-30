@@ -19,7 +19,9 @@ class MateriController extends Controller
     public function showMateri(Module $module, Materi $materi)
     {
         $module = $this->__getModuleWithProgressMateri(auth()->user(), $module);
-        return view("pages.materi.show", compact("module", "materi"));
+        $quiz = $materi->quizzes()->first();
+
+        return view("pages.materi.show", compact("module", "materi", 'quiz'));
     }
 
     public function start(Request $request, Module $module)
@@ -46,7 +48,23 @@ class MateriController extends Controller
 
     public function next(Request $request, Module $module, Materi $materi)
     {
-
+        $user = $request->user();
+        // Ambil semua materi terurut
+        $materis = $module->materis()->orderBy('order')->orderByDesc('created_at')->get();
+        // Cari index materi saat ini
+        $currentIndex = $materis->search(function ($m) use ($materi) {
+            return $m->id == $materi->id;
+        });
+        // Materi berikutnya
+        $nextMateri = $materis->get($currentIndex + 1);
+        if ($nextMateri) {
+            // Buat progress materi jika belum ada
+            $this->__createProggresMateri($user, $nextMateri);
+            return redirect()->route('materi.show', [$module, $nextMateri]);
+        } else {
+            // Tidak ada materi berikutnya, redirect ke halaman selesai/module selesai
+            return redirect()->route('module.show', [$module, $materi])->with('status', 'Module selesai!');
+        }
     }
 
     private function __createProggresModule(User $user, Module $module)

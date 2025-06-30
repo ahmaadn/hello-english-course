@@ -11,7 +11,8 @@ class JawabanUser extends Model
         'quiz_id',
         'pertanyaan_id',
         'jawaban',
-        'is_true'
+        'is_true',
+        'percobaan_ke'
 
     ];
     public function user()
