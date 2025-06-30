@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Module::class);
     }
+
+    public function historyQuizzes()
+    {
+        return $this->hasMany(HistoryQuiz::class);
+    }
 }

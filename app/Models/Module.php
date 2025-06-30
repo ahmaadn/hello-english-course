@@ -33,4 +33,14 @@ class Module extends Model
     {
         return 'slug';
     }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
+
+    public function progressModules()
+    {
+        return $this->hasMany(ProgressModules::class);
+    }
 }
