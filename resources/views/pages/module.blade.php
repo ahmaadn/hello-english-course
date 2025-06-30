@@ -42,8 +42,13 @@
                                 <p>
                                     {{ \Illuminate\Support\Str::limit($module->description, 100) }}
                                 </p>
-                                <a href="{{ route('materi.intro', [$module]) }}"
-                                    class="btn btn-primary px-4 mx-auto my-2">Enroll Module</a>
+                                @guest
+                                    <button type="button" class="btn btn-primary px-4 mx-auto my-2" data-toggle="modal"
+                                        data-target="#loginModal">Enroll Module</button>
+                                @else
+                                    <a href="{{ route('materi.intro', [$module]) }}"
+                                        class="btn btn-primary px-4 mx-auto my-2">Enroll Module</a>
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -52,4 +57,22 @@
         </div>
     </div>
 
+    <!-- Modal Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login Diperlukan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    Anda harus login untuk dapat mengakses modul ini.<br>
+                    <a href="{{ route('auth.login') }}" class="btn btn-primary mt-3">Login Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
