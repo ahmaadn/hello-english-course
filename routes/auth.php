@@ -46,12 +46,13 @@ Route::middleware(['auth', UserAccess::class . ':admin'])
 
 
 // Student Panel
-Route::middleware(['auth', UserAccess::class . ':student'])
-    ->prefix('student')
-    ->name('user.')
-    ->group(function () {
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-    });
+// Tidak di implementasikan untuk sekarang
+// Route::middleware(['auth', UserAccess::class . ':student'])
+//     ->prefix('student')
+//     ->name('user.')
+//     ->group(function () {
+//         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+//     });
 
 // Teacher Panel
 Route::middleware(['auth', UserAccess::class . ':teacher'])
