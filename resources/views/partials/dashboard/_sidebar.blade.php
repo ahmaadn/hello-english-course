@@ -31,8 +31,8 @@
         {{-- Progress Kuis --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.history-quiz.index') }}">
-                <i class="ti-book menu-icon"></i>
-                <span class="menu-title">Quiz Progress</span>
+                <i class="ti-harddrives menu-icon"></i>
+                <span class="menu-title">Quiz Results History</span>
             </a>
         </li>
     </ul>

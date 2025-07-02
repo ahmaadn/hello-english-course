@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container py-4">
-        <h2 class="mb-4">Riwayat Hasil Quiz</h2>
+        <h2 class="mb-4">Quiz Results History</h2>
         <div class="card">
-            <div class="card-body">
-                <table class="table table-bordered table-hover">
+            <div class="card-body table-responsive">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>#</th>

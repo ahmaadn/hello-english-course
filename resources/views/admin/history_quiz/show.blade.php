@@ -9,11 +9,11 @@
                     <dt class="col-sm-3">User</dt>
                     <dd class="col-sm-9">{{ $historyQuiz->user->name ?? '-' }}</dd>
                     <dt class="col-sm-3">Quiz</dt>
-                    <dd class="col-sm-9">{{ $historyQuiz->quiz->judul ?? '-' }}</dd>
+                    <dd class="col-sm-9">{{ $historyQuiz->quiz->title ?? '-' }}</dd>
                     <dt class="col-sm-3">Materi</dt>
-                    <dd class="col-sm-9">{{ $historyQuiz->quiz->materi->judul ?? '-' }}</dd>
+                    <dd class="col-sm-9">{{ $historyQuiz->quiz->materi->title ?? '-' }}</dd>
                     <dt class="col-sm-3">Module</dt>
-                    <dd class="col-sm-9">{{ $historyQuiz->quiz->materi->module->judul ?? '-' }}</dd>
+                    <dd class="col-sm-9">{{ $historyQuiz->quiz->materi->module->name ?? '-' }}</dd>
                     <dt class="col-sm-3">Nilai</dt>
                     <dd class="col-sm-9">
                         @php
@@ -28,8 +28,8 @@
         </div>
         <div class="card">
             <div class="card-header">Detail Jawaban</div>
-            <div class="card-body">
-                <table class="table table-bordered">
+            <div class="card-body table-responsive">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>No</th>
