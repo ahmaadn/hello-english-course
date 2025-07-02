@@ -56,8 +56,11 @@
                                 @forelse ($quizzes as $item)
                                     <tr>
                                         <td>
-                                            <a class="text-decoration-none" href="{{ route('admin.quiz.show', $item) }}">
-                                                <h4 class="mb-0">{{ \Illuminate\Support\Str::limit($item->title, 30) }}</h4>
+                                            <a href="{{ route('admin.quiz.show', $item) }}" class="text-decoration-none">
+                                                <h4 class="mb-0">{{ $item->title }}</h4>
+                                                <p class="text-decoration-none text-muted mb-0 text-subtitle">
+                                                    {{ \Illuminate\Support\Str::limit($item->materi->title ?? '', 50, '...') }}
+                                                </p>
                                             </a>
                                         </td>
                                         <td>
