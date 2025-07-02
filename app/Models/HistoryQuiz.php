@@ -21,4 +21,9 @@ class HistoryQuiz extends Model
     {
         return $this->belongsTo(Pertanyaan::class);
     }
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
+    }
 }
