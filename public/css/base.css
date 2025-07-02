@@ -1,0 +1,76 @@
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.draggable-item {
+    padding: 8px 16px;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: grab;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.draggable-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #3b82f6;
+}
+
+.draggable-item:active {
+    cursor: grabbing;
+    background-color: #f3f4f6;
+}
+
+.drop-target-sentence {
+    padding: 16px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    border-left: 4px solid #d1d5db;
+    font-size: 1.05em;
+    color: #374151;
+    line-height: 1.8;
+}
+
+.drop-zone {
+    display: inline-block;
+    background-color: #e5e7eb;
+    border: 2px dashed #9ca3af;
+    border-radius: 8px;
+    min-width: 120px;
+    min-height: 42px;
+    vertical-align: middle;
+    transition: all 0.2s ease;
+    padding: 2px;
+    margin: 0 4px;
+}
+
+.drop-zone.drag-over {
+    background-color: #dbeafe;
+    border-color: #3b82f6;
+}
+
+.drop-zone.correct {
+    border-style: solid;
+    border-color: #10b981;
+    background-color: #d1fae5;
+}
+
+.drop-zone.correct .draggable-item {
+    border-color: #10b981;
+}
+
+.drop-zone.incorrect {
+    border-style: solid;
+    border-color: #ef4444;
+    background-color: #fee2e2;
+}
+
+.drop-zone.incorrect .draggable-item {
+    border-color: #ef4444;
+}
