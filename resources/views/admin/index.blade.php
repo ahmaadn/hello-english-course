@@ -31,15 +31,15 @@
         </div>
         <div class="col-md-6 grid-margin transparent">
             <div class="row">
-                <x-dashboard-card cardClass="card-tale" title="Today’s Students" value="4006"
+                <x-dashboard-card cardClass="card-tale" title="Today’s Students" value="{{ $totalStudents }}"
                     percentage="10.00% (30 days)" />
-                <x-dashboard-card cardClass="card-dark-blue" title="Total Material" value="61344"
+                <x-dashboard-card cardClass="card-dark-blue" title="Total Material" value="{{ $totalMateri }}"
                     percentage="22.00% (30 days)" />
             </div>
             <div class="row">
-                <x-dashboard-card cardClass="card-light-blue" title="Total Users" value="34040"
+                <x-dashboard-card cardClass="card-light-blue" title="Total Users" value="{{ $totalUsers }}"
                     percentage="2.00% (30 days)" />
-                <x-dashboard-card cardClass="card-light-danger" title="Total Teachers" value="47033"
+                <x-dashboard-card cardClass="card-light-danger" title="Total Quiz" value="{{ $totalQuiz }}"
                     percentage="0.22% (30 days)" />
             </div>
         </div>
