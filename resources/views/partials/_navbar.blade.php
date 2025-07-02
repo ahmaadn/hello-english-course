@@ -17,20 +17,18 @@
             </div>
             <div>
 
-            @auth
+                @auth
                 @roles(['admin'])
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary px-4 mr-2">Dashboard</a>
+                    <a href="{{ route('admin.dashboard') }}" class="btn btn-primary px-4 mr-2">Dashboard</a>
+                    @endroles
+                    <form action="{{ route('auth.logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-secondary px-4">Logout</button>
+                    </form>
                 @else
-                <a href="{{ route('user.dashboard') }}" class="btn btn-primary px-4 mr-2">Dashboard</a>
-                @endroles
-                <form action="{{ route('auth.logout') }}" method="POST" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-secondary px-4">Logout</button>
-                </form>
-            @else
                 <a href="{{ route('auth.login') }}" class="btn btn-primary px-4 mr-2">Login</a>
                 <a href="{{ route('auth.register') }}" class="btn btn-outline-secondary px-4">register</a>
-            @endauth
+                @endauth
             </div>
         </div>
     </nav>
