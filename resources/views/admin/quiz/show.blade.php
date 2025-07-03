@@ -85,7 +85,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <form action="{{ route('admin.pertanyaan.destroy', $pertanyaan) }}" method="POST"
+                                <form action="{{ route('admin.pertanyaan.destroy', [$quiz->id, $pertanyaan->id]) }}" method="POST"
                                     onsubmit="return confirm('Hapus soal ini?')">
                                     @csrf
                                     @method('DELETE')
