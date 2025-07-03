@@ -46,7 +46,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://test-deploy-laravel-1.vercel.app/",
+        "APP_URL": "",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
@@ -56,19 +56,21 @@
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        "DB_CONNECTION": "mysql",
-        "DB_HOST": "mysql-39cafa10-kerofrostdiamond415-7145.c.aivencloud.com",
-        "DB_PORT": "16083",
-        "DB_DATABASE": "db_hello_english",
-        "DB_USERNAME": "avnadmin",
-        "DB_PASSWORD": "",
-        "CLOUDINARY_URL": "cloudinary://464199373218188:L0NPYw4Vw4tUd9gZZZQIHZftx30@dsdsulwlu",
-        "CLOUDINARY_UPLOAD_PRESET": "hello_english",
+        "DB_CONNECTION": "",
+        "DB_HOST": "",
+        "DB_PORT": "",
+        "DB_DATABASE": "",
+        "DB_USERNAME": "",
+        "DB_PASSWORD": "-qInFz",
+        "CLOUDINARY_URL": "",
+        "CLOUDINARY_UPLOAD_PRESET": "",
         "CLOUDINARY_NOTIFICATION_URL": "",
-        "CLOUDINARY_KEY": "464199373218188",
-        "CLOUDINARY_SECRET": "L0NPYw4Vw4tUd9gZZZQIHZftx30",
-        "CLOUDINARY_SECURE": "true",
-        "CLOUDINARY_PREFIX": ""
+        "CLOUDINARY_KEY": "",
+        "CLOUDINARY_SECRET": "",
+        "CLOUDINARY_SECURE": "",
+        "CLOUDINARY_PREFIX": "",
+
+        "FILESYSTEM_DISK": "cloudinary"
     },
     "outputDirectory": "public"
 }
