@@ -75,9 +75,9 @@ class PertanyaanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pertanyaan $pertanyaan, Quiz $quiz)
+    public function destroy(Quiz $quiz, Pertanyaan $pertanyaan)
     {
         $pertanyaan->delete();
-        return back()->with('success', 'Soal berhasil dihapus.');
+        return redirect()->route('admin.quiz.show', [$quiz->id])->with('success', 'Soal berhasil dihapus.');
     }
 }
