@@ -42,7 +42,7 @@ Route::middleware(['auth', UserAccess::class . ':admin'])
 
         Route::post('/{quiz}/soal', [AdminPertanyaanController::class, 'store'])->name('pertanyaan.store');
 
-        Route::delete('/{quiz}/soal', [AdminPertanyaanController::class, 'destroy'])->name('pertanyaan.destroy');
+        Route::delete('/{quiz}/soal/{pertanyaan}', [AdminPertanyaanController::class, 'destroy'])->name('pertanyaan.destroy');
 
         Route::resource('history-quiz', AdminHistoryQuizController::class);
     });
