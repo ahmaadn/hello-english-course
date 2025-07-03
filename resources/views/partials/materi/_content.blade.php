@@ -11,10 +11,10 @@
     </div>
 </div>
 <div class="mb-5">
-    @if(Str::startsWith($module->image_url, ['http://', 'https://']))
-        <img class="img-fluid rounded w-100 mb-4" src="{{  $module->image_url }}" alt="Image" />
+    @if(Str::startsWith($materi->illustrations_url, ['http://', 'https://']))
+        <img class="img-fluid rounded w-100 mb-4" src="{{  $materi->illustrations_url }}" alt="Image" />
     @else
-        <img class="img-fluid rounded w-100 mb-4" src="{{  asset('storage/' . $materi->image_url) }}" alt="Image" />
+        <img class="img-fluid rounded w-100 mb-4" src="{{  asset('storage/' . $materi->illustrations_url) }}" alt="Image" />
     @endif
 
     <p>
@@ -41,7 +41,7 @@
                             @if($quiz->tipe === 'essay')
                                 <div>{{ $soal->teks }}</div>
                                 <textarea name="jawaban[{{ $soal->id }}]" class="form-control mt-2" rows="2"
-                                    placeholder="Jawaban Anda..."></textarea>
+                                    placeholder="Jawaban Anda..." required></textarea>
                             @elseif($quiz->tipe === 'pilihan_ganda')
                                 <div>{{ $soal->teks }}</div>
                                 @foreach(json_decode($soal->options, true) ?? [] as $opt)
