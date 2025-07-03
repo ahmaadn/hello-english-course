@@ -32,8 +32,6 @@
                         <img class="img-fluid rounded w-100 mb-4" src="{{ asset('storage/' . $module->image_url) }}"
                             alt="Image" />
                     @endif
-                    <img class="img-fluid rounded w-100 mb-4" src="{{ asset('storage/' . $module->image_url) }}"
-                        alt="Image" />
                     <p>
                         {{ $module->description }}
                     </p>
