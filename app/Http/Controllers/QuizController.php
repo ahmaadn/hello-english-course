@@ -50,16 +50,17 @@ class QuizController extends Controller
             // Simpan jawaban user per soal
             foreach ($quiz->pertanyaans as $soal) {
                 $jawaban = $jawabanUser[$soal->id] ?? null;
-                $isTrue = null;
                 if ($quiz->tipe === 'pilihan_ganda' || $quiz->tipe === 'drop_drag') {
                     $isTrue = $jawaban && $soal->jawaban_benar && trim($jawaban) == trim($soal->jawaban_benar);
+                } else {
+                    $isTrue = 1;
                 }
                 JawabanUser::create([
                     'user_id' => $userId,
                     'quiz_id' => $quiz->id,
                     'pertanyaan_id' => $soal->id,
                     'jawaban' => $jawaban,
-                    'is_true' => $isTrue,
+                    'is_true' => $isTrue ? 1 : 0,
                     'percobaan_ke' => $percobaanKe,
                 ]);
             }
